@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <div className="flex h-screen bg-gray-100">
