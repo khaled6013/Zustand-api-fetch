@@ -27,10 +27,8 @@ function App() {
 
       </div>
 
-      {/* Main */}
       <div className="flex-1 flex flex-col">
 
-        {/* Navbar */}
         <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-4 flex justify-between items-center">
 
           <input
