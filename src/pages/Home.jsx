@@ -1,148 +1,451 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+const Counter = ({ end }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+
+    const duration = 1500;
+    const increment = end / (duration / 20);
+
+    const timer = setInterval(() => {
+      start += increment;
+
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 20);
+
+    return () => clearInterval(timer);
+  }, [end]);
+
+  return (
+    <h2 className="text-3xl font-bold text-gray-800">
+      {count}
+    </h2>
+  );
+};
 
 const Home = () => {
   return (
     <div className="p-4 md:p-6 bg-gray-100 min-h-screen">
 
       {/* Hero Section */}
-      <div className="bg-linear-to-r from-blue-500 to-indigo-600 rounded-3xl p-8 md:p-10 text-white shadow-lg">
+      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 rounded-[32px] p-8 md:p-12 text-white shadow-xl">
 
-        <p className="uppercase tracking-widest text-sm text-blue-100 mb-3">
-          Dashboard Overview
-        </p>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
 
-        <h1 className="text-3xl md:text-5xl font-bold mb-4">
-          Welcome Back, Admin 👋
-        </h1>
+        <div className="relative z-10">
 
-        <p className="text-blue-100 text-base md:text-lg max-w-2xl mb-8">
-          Manage your users, messages, and settings from one clean and modern dashboard.
-        </p>
+          <p className="uppercase tracking-[4px] text-sm text-blue-100 mb-4">
+            Modern Dashboard
+          </p>
 
-        <div className="flex flex-wrap gap-4">
-          <Link
-            to="/users"
-            className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition"
-          >
-            View Users
-          </Link>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-5">
+            Welcome Back, Admin 👋
+          </h1>
 
-          <Link
-            to="/messages"
-            className="border border-white/40 px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition"
-          >
-            Messages
-          </Link>
+          <p className="text-blue-100 text-lg max-w-2xl mb-8 leading-relaxed">
+            Monitor analytics, manage users, track activities, and control your entire system from one premium dashboard interface.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+
+            <Link
+              to="/users"
+              className="bg-white text-blue-600 px-7 py-3 rounded-2xl font-semibold hover:bg-blue-50 transition"
+            >
+              Explore Users
+            </Link>
+
+            <button className="border border-white/30 px-7 py-3 rounded-2xl font-semibold hover:bg-white/10 transition">
+              Analytics Report
+            </button>
+
+          </div>
+
         </div>
+
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <p className="text-gray-500 text-sm mb-2">
-            Total Users
+        <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition">
+
+          <div className="flex items-center justify-between mb-5">
+
+            <div>
+              <p className="text-gray-500 text-sm">
+                Total Users
+              </p>
+
+              <Counter end={120} />
+            </div>
+
+            <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-2xl">
+              👥
+            </div>
+
+          </div>
+
+          <p className="text-sm text-green-500 font-medium">
+            +12% this month
           </p>
 
-          <h2 className="text-3xl font-bold text-gray-800">
-            120
-          </h2>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <p className="text-gray-500 text-sm mb-2">
-            Active Projects
+        <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition">
+
+          <div className="flex items-center justify-between mb-5">
+
+            <div>
+              <p className="text-gray-500 text-sm">
+                Projects
+              </p>
+
+              <Counter end={15} />
+            </div>
+
+            <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center text-2xl">
+              🚀
+            </div>
+
+          </div>
+
+          <p className="text-sm text-green-500 font-medium">
+            +8% this week
           </p>
 
-          <h2 className="text-3xl font-bold text-gray-800">
-            15
-          </h2>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <p className="text-gray-500 text-sm mb-2">
-            Messages
+        <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition">
+
+          <div className="flex items-center justify-between mb-5">
+
+            <div>
+              <p className="text-gray-500 text-sm">
+                Messages
+              </p>
+
+              <Counter end={245} />
+            </div>
+
+            <div className="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-2xl">
+              💬
+            </div>
+
+          </div>
+
+          <p className="text-sm text-green-500 font-medium">
+            +24 today
           </p>
 
-          <h2 className="text-3xl font-bold text-gray-800">
-            245
-          </h2>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <p className="text-gray-500 text-sm mb-2">
-            Revenue
+        <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition">
+
+          <div className="flex items-center justify-between mb-5">
+
+            <div>
+              <p className="text-gray-500 text-sm">
+                Revenue
+              </p>
+
+              <h2 className="text-3xl font-bold text-gray-800">
+                $12.4K
+              </h2>
+            </div>
+
+            <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+              💰
+            </div>
+
+          </div>
+
+          <p className="text-sm text-green-500 font-medium">
+            +18% growth
           </p>
 
-          <h2 className="text-3xl font-bold text-gray-800">
-            $12.4K
-          </h2>
         </div>
 
       </div>
 
-      {/* Recent Activity */}
-      <div className="bg-white rounded-3xl p-6 mt-8 shadow-sm border border-gray-100">
+      {/* Analytics */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
 
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-gray-800">
-            Recent Activity
-          </h2>
+        {/* Performance */}
+        <div className="lg:col-span-2 bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
 
-          <button className="text-blue-600 hover:underline text-sm">
-            View All
-          </button>
+          <div className="flex items-center justify-between mb-8">
+
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Weekly Performance
+              </h2>
+
+              <p className="text-sm text-gray-500">
+                Team productivity and analytics
+              </p>
+            </div>
+
+            <button className="text-blue-600 hover:underline text-sm">
+              Full Report
+            </button>
+
+          </div>
+
+          <div className="space-y-6">
+
+            <div>
+
+              <div className="flex justify-between mb-2 text-sm">
+                <span className="text-gray-600">
+                  UI Design
+                </span>
+
+                <span className="font-semibold">
+                  85%
+                </span>
+              </div>
+
+              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 rounded-full w-[85%]"></div>
+              </div>
+
+            </div>
+
+            <div>
+
+              <div className="flex justify-between mb-2 text-sm">
+                <span className="text-gray-600">
+                  Development
+                </span>
+
+                <span className="font-semibold">
+                  72%
+                </span>
+              </div>
+
+              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-full bg-green-500 rounded-full w-[72%]"></div>
+              </div>
+
+            </div>
+
+            <div>
+
+              <div className="flex justify-between mb-2 text-sm">
+                <span className="text-gray-600">
+                  Marketing
+                </span>
+
+                <span className="font-semibold">
+                  60%
+                </span>
+              </div>
+
+              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-full bg-purple-500 rounded-full w-[60%]"></div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div className="space-y-5">
+        {/* Quick Actions */}
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
 
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-              A
-            </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            Quick Actions
+          </h2>
 
-            <div>
-              <h3 className="font-semibold text-gray-800">
-                Alex updated the dashboard
-              </h3>
+          <div className="space-y-4">
 
-              <p className="text-sm text-gray-500">
-                2 minutes ago
-              </p>
-            </div>
+            <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-2xl transition font-medium">
+              Add New User
+            </button>
+
+            <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl transition">
+              Create Project
+            </button>
+
+            <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl transition">
+              Send Message
+            </button>
+
+            <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl transition">
+              Generate Report
+            </button>
+
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">
-              J
-            </div>
+        </div>
+
+      </div>
+
+      {/* Recent Orders + Tasks */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+
+        {/* Tasks */}
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+
+          <div className="flex items-center justify-between mb-6">
 
             <div>
-              <h3 className="font-semibold text-gray-800">
-                John added a new user
-              </h3>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Today's Tasks
+              </h2>
 
               <p className="text-sm text-gray-500">
-                10 minutes ago
+                Manage your workflow
               </p>
             </div>
+
+            <button className="text-blue-600 text-sm hover:underline">
+              View All
+            </button>
+
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="w-11 h-11 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold">
-              S
+          <div className="space-y-4">
+
+            <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  Update Dashboard UI
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  Due Today
+                </p>
+              </div>
+
+              <span className="bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full">
+                Completed
+              </span>
             </div>
+
+            <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  Fix API Issues
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  Due Tomorrow
+                </p>
+              </div>
+
+              <span className="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-full">
+                Pending
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  Team Meeting
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  4:00 PM
+                </p>
+              </div>
+
+              <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-full">
+                Scheduled
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Notifications */}
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+
+          <div className="flex items-center justify-between mb-6">
 
             <div>
-              <h3 className="font-semibold text-gray-800">
-                Sarah sent new messages
-              </h3>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Notifications
+              </h2>
 
               <p className="text-sm text-gray-500">
-                1 hour ago
+                Latest updates
               </p>
             </div>
+
+            <button className="text-blue-600 text-sm hover:underline">
+              Clear All
+            </button>
+
+          </div>
+
+          <div className="space-y-5">
+
+            <div className="flex gap-4">
+
+              <div className="w-11 h-11 rounded-2xl bg-blue-100 flex items-center justify-center">
+                🔔
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  New project created
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  5 minutes ago
+                </p>
+              </div>
+
+            </div>
+
+            <div className="flex gap-4">
+
+              <div className="w-11 h-11 rounded-2xl bg-green-100 flex items-center justify-center">
+                ✅
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  Payment received
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  1 hour ago
+                </p>
+              </div>
+
+            </div>
+
+            <div className="flex gap-4">
+
+              <div className="w-11 h-11 rounded-2xl bg-purple-100 flex items-center justify-center">
+                💬
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800">
+                  12 new messages
+                </h3>
+
+                <p className="text-sm text-gray-500">
+                  Today
+                </p>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
