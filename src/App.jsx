@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import Home from "./pages/Home";
+
 import {
   BrowserRouter,
   Routes,
@@ -17,24 +19,32 @@ function UsersPage() {
 
   return (
     <div className="p-4 md:p-6 overflow-auto">
+
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         Team Members
       </h1>
 
       {loading && (
-        <p className="text-gray-500">Loading...</p>
+        <p className="text-gray-500">
+          Loading...
+        </p>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
         {users.map((user) => (
           <div
             key={user.id}
             className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition duration-300"
           >
+
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-14 h-14 rounded-full bg-blue-500 text-white flex items-center justify-center text-lg font-bold shadow">
-                {user.name.charAt(0)}
-              </div>
+
+              <img
+                src={`https://i.pravatar.cc/150?img=${user.id}`}
+                alt={user.name}
+                className="w-14 h-14 rounded-full object-cover"
+              />
 
               <div>
                 <h3 className="font-semibold text-gray-800 text-lg">
@@ -45,6 +55,7 @@ function UsersPage() {
                   Team Member
                 </p>
               </div>
+
             </div>
 
             <div className="space-y-2 text-sm text-gray-600">
@@ -55,40 +66,40 @@ function UsersPage() {
             <button className="mt-5 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl transition">
               View Profile
             </button>
+
           </div>
         ))}
-      </div>
-    </div>
-  );
-}
 
-function HomePage() {
-  return (
-    <div className="p-6 text-2xl font-bold">
-      Welcome Home
+      </div>
+
     </div>
   );
 }
 
 function MessagesPage() {
   return (
-    <div className="p-6 text-2xl font-bold">
-      Messages Page
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-gray-800">
+        Messages Page
+      </h1>
     </div>
   );
 }
 
 function SettingsPage() {
   return (
-    <div className="p-6 text-2xl font-bold">
-      Settings Page
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-gray-800">
+        Settings Page
+      </h1>
     </div>
   );
 }
 
 function Layout() {
+
   const navClass = ({ isActive }) =>
-    `block p-3 rounded-xl transition ${
+    `block p-3 rounded-xl transition font-medium ${
       isActive
         ? "bg-blue-500 text-white shadow"
         : "text-gray-600 hover:bg-gray-100"
@@ -105,6 +116,7 @@ function Layout() {
         </div>
 
         <nav className="flex flex-col gap-2 px-4">
+
           <NavLink to="/" className={navClass}>
             Home
           </NavLink>
@@ -120,11 +132,13 @@ function Layout() {
           <NavLink to="/settings" className={navClass}>
             Settings
           </NavLink>
+
         </nav>
+
       </div>
 
       {/* Main */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-hidden">
 
         {/* Topbar */}
         <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-4 flex justify-between items-center">
@@ -136,6 +150,7 @@ function Layout() {
           />
 
           <div className="flex items-center gap-3">
+
             <span className="hidden sm:block text-gray-600 font-medium">
               Admin
             </span>
@@ -143,20 +158,39 @@ function Layout() {
             <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold shadow">
               A
             </div>
+
           </div>
+
         </div>
 
         {/* Pages */}
         <div className="flex-1 overflow-auto">
+
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/users" element={<UsersPage />} />
-            <Route path="/messages" element={<MessagesPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+
+            <Route path="/" element={<Home />} />
+
+            <Route
+              path="/users"
+              element={<UsersPage />}
+            />
+
+            <Route
+              path="/messages"
+              element={<MessagesPage />}
+            />
+
+            <Route
+              path="/settings"
+              element={<SettingsPage />}
+            />
+
           </Routes>
+
         </div>
 
       </div>
+
     </div>
   );
 }
