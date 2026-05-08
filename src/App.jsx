@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Home from "./pages/Home";
+import Messages from "./pages/Messages";
 
 import {
   BrowserRouter,
@@ -175,10 +176,7 @@ function Layout() {
               element={<UsersPage />}
             />
 
-            <Route
-              path="/messages"
-              element={<MessagesPage />}
-            />
+            <Route path="/messages" element={<Messages />} />
 
             <Route
               path="/settings"

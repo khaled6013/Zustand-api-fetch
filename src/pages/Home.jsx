@@ -37,7 +37,7 @@ const Home = () => {
     <div className="p-4 md:p-6 bg-gray-100 min-h-screen">
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 rounded-[32px] p-8 md:p-12 text-white shadow-xl">
+      <div className="relative overflow-hidden bg-linear-to-r from-blue-600 via-blue-500 to-indigo-600 rounded-4xl p-8 md:p-12 text-white shadow-xl">
 
         <div className="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
 
