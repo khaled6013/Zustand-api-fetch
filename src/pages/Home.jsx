@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import WeeklyPerformance from "../components/WeeklyPerformance";
 
 const Counter = ({ end }) => {
   const [count, setCount] = useState(0);
@@ -81,11 +82,13 @@ const Home = () => {
           <div className="flex items-center justify-between mb-5">
 
             <div>
+
               <p className="text-gray-500 text-sm">
                 Total Users
               </p>
 
               <Counter end={120} />
+
             </div>
 
             <div className="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center text-2xl">
@@ -105,11 +108,13 @@ const Home = () => {
           <div className="flex items-center justify-between mb-5">
 
             <div>
+
               <p className="text-gray-500 text-sm">
                 Projects
               </p>
 
               <Counter end={15} />
+
             </div>
 
             <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center text-2xl">
@@ -129,11 +134,13 @@ const Home = () => {
           <div className="flex items-center justify-between mb-5">
 
             <div>
+
               <p className="text-gray-500 text-sm">
                 Messages
               </p>
 
               <Counter end={245} />
+
             </div>
 
             <div className="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-2xl">
@@ -153,6 +160,7 @@ const Home = () => {
           <div className="flex items-center justify-between mb-5">
 
             <div>
+
               <p className="text-gray-500 text-sm">
                 Revenue
               </p>
@@ -160,6 +168,7 @@ const Home = () => {
               <h2 className="text-3xl font-bold text-gray-800">
                 $12.4K
               </h2>
+
             </div>
 
             <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
@@ -179,86 +188,8 @@ const Home = () => {
       {/* Analytics */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
 
-        {/* Performance */}
-        <div className="lg:col-span-2 bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-
-          <div className="flex items-center justify-between mb-8">
-
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800">
-                Weekly Performance
-              </h2>
-
-              <p className="text-sm text-gray-500">
-                Team productivity and analytics
-              </p>
-            </div>
-
-            <button className="text-blue-600 hover:underline text-sm">
-              Full Report
-            </button>
-
-          </div>
-
-          <div className="space-y-6">
-
-            <div>
-
-              <div className="flex justify-between mb-2 text-sm">
-                <span className="text-gray-600">
-                  UI Design
-                </span>
-
-                <span className="font-semibold">
-                  85%
-                </span>
-              </div>
-
-              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 rounded-full w-[85%]"></div>
-              </div>
-
-            </div>
-
-            <div>
-
-              <div className="flex justify-between mb-2 text-sm">
-                <span className="text-gray-600">
-                  Development
-                </span>
-
-                <span className="font-semibold">
-                  72%
-                </span>
-              </div>
-
-              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-green-500 rounded-full w-[72%]"></div>
-              </div>
-
-            </div>
-
-            <div>
-
-              <div className="flex justify-between mb-2 text-sm">
-                <span className="text-gray-600">
-                  Marketing
-                </span>
-
-                <span className="font-semibold">
-                  60%
-                </span>
-              </div>
-
-              <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-purple-500 rounded-full w-[60%]"></div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
+        {/* Animated Performance */}
+        <WeeklyPerformance />
 
         {/* Quick Actions */}
         <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
@@ -291,7 +222,7 @@ const Home = () => {
 
       </div>
 
-      {/* Recent Orders + Tasks */}
+      {/* Tasks + Notifications */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
 
         {/* Tasks */}
@@ -300,6 +231,7 @@ const Home = () => {
           <div className="flex items-center justify-between mb-6">
 
             <div>
+
               <h2 className="text-2xl font-bold text-gray-800">
                 Today's Tasks
               </h2>
@@ -307,6 +239,7 @@ const Home = () => {
               <p className="text-sm text-gray-500">
                 Manage your workflow
               </p>
+
             </div>
 
             <button className="text-blue-600 text-sm hover:underline">
@@ -318,7 +251,9 @@ const Home = () => {
           <div className="space-y-4">
 
             <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   Update Dashboard UI
                 </h3>
@@ -326,15 +261,19 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   Due Today
                 </p>
+
               </div>
 
               <span className="bg-green-100 text-green-600 text-xs px-3 py-1 rounded-full">
                 Completed
               </span>
+
             </div>
 
             <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   Fix API Issues
                 </h3>
@@ -342,15 +281,19 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   Due Tomorrow
                 </p>
+
               </div>
 
               <span className="bg-yellow-100 text-yellow-600 text-xs px-3 py-1 rounded-full">
                 Pending
               </span>
+
             </div>
 
             <div className="flex items-center justify-between bg-gray-50 rounded-2xl p-4">
+
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   Team Meeting
                 </h3>
@@ -358,11 +301,13 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   4:00 PM
                 </p>
+
               </div>
 
               <span className="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-full">
                 Scheduled
               </span>
+
             </div>
 
           </div>
@@ -375,6 +320,7 @@ const Home = () => {
           <div className="flex items-center justify-between mb-6">
 
             <div>
+
               <h2 className="text-2xl font-bold text-gray-800">
                 Notifications
               </h2>
@@ -382,6 +328,7 @@ const Home = () => {
               <p className="text-sm text-gray-500">
                 Latest updates
               </p>
+
             </div>
 
             <button className="text-blue-600 text-sm hover:underline">
@@ -399,6 +346,7 @@ const Home = () => {
               </div>
 
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   New project created
                 </h3>
@@ -406,6 +354,7 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   5 minutes ago
                 </p>
+
               </div>
 
             </div>
@@ -417,6 +366,7 @@ const Home = () => {
               </div>
 
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   Payment received
                 </h3>
@@ -424,6 +374,7 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   1 hour ago
                 </p>
+
               </div>
 
             </div>
@@ -435,6 +386,7 @@ const Home = () => {
               </div>
 
               <div>
+
                 <h3 className="font-semibold text-gray-800">
                   12 new messages
                 </h3>
@@ -442,6 +394,7 @@ const Home = () => {
                 <p className="text-sm text-gray-500">
                   Today
                 </p>
+
               </div>
 
             </div>
